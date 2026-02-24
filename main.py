@@ -18,7 +18,7 @@ async def main():
     print("=" * 40 + "\n")
 
     try:
-        scraper = Scraper(settings.site_url, settings.site_name)
+        scraper = Scraper(site_url=settings.site_url, site_name=settings.site_name)
 
         await scraper.run()
 

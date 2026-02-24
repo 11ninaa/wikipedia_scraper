@@ -20,10 +20,8 @@ class ScraperSettings(BaseSettings):
     max_concurrent_requests: int = 1
     request_timeout: int = 30
 
-    # Rate limiting
+    # Rate limiting & Retries (Клучно за HttpClient)
     requests_per_second: float = 1.0
-
-    # Retry settings
     max_retries: int = 3
     retry_delay: float = 1.0
     retry_backoff: float = 2.0
