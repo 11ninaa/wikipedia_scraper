@@ -31,20 +31,25 @@ class Scraper:
         try:
             members = await fetcher.fetch_category_members(category_name)
 
+            seen_ids = self._store.load_seen_ids()
+
             for member in members:
                 page_id = str(member.get("pageid"))
-
                 full_id = f"wiki_{page_id}"
 
-                if full_id in self._store.seen_ids:
+                if full_id in seen_ids:
                     continue
 
                 if member.get("ns") == 0:
                     raw_data = await fetcher.fetch_article_content(page_id)
                     if raw_data:
                         record = self._parser.parse_wikipedia_page(raw_data)
+
                         self._store.save_records([record])
-                        logger.info(f"Saved: {record.title}")
+
+                        seen_ids.add(full_id)
+
+                        logger.info(f"Saved: {member.get('title')}")
 
                 elif member.get("ns") == 14:
                     sub_cat = member.get("title", "").replace("Категорија:", "").strip()

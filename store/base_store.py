@@ -2,7 +2,7 @@ import logging
 from typing import Iterable, List, Set, Dict, Any
 from abc import ABC, abstractmethod
 
-from scraper import Record
+from vezilka_schemas import Record
 
 logger = logging.getLogger(__name__)
 

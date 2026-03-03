@@ -20,14 +20,13 @@ class ScraperSettings(BaseSettings):
     max_concurrent_requests: int = 1
     request_timeout: int = 30
 
-    # Rate limiting & Retries (Клучно за HttpClient)
     requests_per_second: float = 1.0
     max_retries: int = 3
-    retry_delay: float = 1.0
+    retry_delay: float = 10.0
     retry_backoff: float = 2.0
 
     headers: dict = {
-        'User-Agent': 'MacedonianResearchBot/1.0 (Educational purpose; contact: research@example.com)',
+        'User-Agent': 'VezilkaDatasetCollector/1.0 (Language Research Project; contact: research-team@example.com)',
         'Accept': 'application/json'
     }
 
